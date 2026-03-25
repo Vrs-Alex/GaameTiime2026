@@ -15,4 +15,3 @@ val Gradient2 = Color(0xFFF22E63)
 
 val RedText = Color(0xFFFA5075)
 
-
