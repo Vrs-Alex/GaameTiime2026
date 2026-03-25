@@ -1,12 +1,10 @@
 package com.vrsalex.uikit.component.v2.button
 
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,8 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
@@ -70,7 +66,7 @@ fun AppButton(
                 )
             )
             .background(Color(0xFFE9F0F7), RoundedCornerShape(60.dp))
-            .background(getBaseGradient2(), RoundedCornerShape(60.dp))
+            .background(getBaseGradient2(Color(0x12121212)), RoundedCornerShape(60.dp))
             .border(
                 width = 1.dp,
                 brush = Brush.linearGradient(

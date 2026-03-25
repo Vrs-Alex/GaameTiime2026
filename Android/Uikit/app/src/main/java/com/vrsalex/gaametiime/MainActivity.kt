@@ -14,10 +14,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.TimePicker
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.vrsalex.gaametiime.preview.AppTimePicker
 import com.vrsalex.gaametiime.preview.DatePicker
@@ -71,6 +74,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        window.isNavigationBarContrastEnforced = false
         setContent {
             GaameTiimeTheme {
 
@@ -80,8 +84,10 @@ class MainActivity : ComponentActivity() {
                     when(it){
                         0 -> {
                             Column(
-                                Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 20.dp)
+                                Modifier.fillMaxSize()
                                     .background(Color.White)
+                                    .safeDrawingPadding()
+                                    .padding(horizontal = 20.dp)
                                     .verticalScroll(rememberScrollState()),
                                 verticalArrangement = Arrangement.spacedBy(16.dp)
                             ) {
@@ -145,9 +151,9 @@ class MainActivity : ComponentActivity() {
                         1 -> {
                             Column(
                                 Modifier.fillMaxSize()
+                                    .background(Color(0xFFE9F0F7))
                                     .safeDrawingPadding()
                                     .padding(horizontal = 20.dp)
-                                    .background(Color(0xFFE9F0F7))
                                     .verticalScroll(rememberScrollState()),
                                 verticalArrangement = Arrangement.spacedBy(16.dp)
                             ) {
@@ -156,6 +162,20 @@ class MainActivity : ComponentActivity() {
                                     "Log in",
                                     {},
                                     icon = R.drawable.lock
+                                )
+
+                                var text by remember { mutableStateOf("") }
+                                com.vrsalex.uikit.component.v2.input.AppTextInput(
+                                    value = text,
+                                    onValueChange = { text = it },
+                                    placeHolder = "Input field",
+                                    modifier = Modifier.width(200.dp),
+                                    trailingIcon = {
+                                        Icon(
+                                            painter = painterResource(R.drawable.checkmark),
+                                            contentDescription = null
+                                        )
+                                    }
                                 )
                             }
                         }
