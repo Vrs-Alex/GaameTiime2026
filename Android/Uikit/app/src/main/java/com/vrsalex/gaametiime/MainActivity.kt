@@ -5,26 +5,91 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.TimePicker
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.vrsalex.gaametiime.ui.theme.GaametiimeUikitTheme
+import androidx.compose.ui.unit.dp
+import com.vrsalex.gaametiime.preview.AppTimePicker
+import com.vrsalex.gaametiime.preview.DatePicker
+import com.vrsalex.uikit.R
+import com.vrsalex.uikit.component.v1.button.AppButton
+import com.vrsalex.uikit.component.v1.button.AppTertiaryButton
+import com.vrsalex.uikit.component.v1.card.AppCard
+import com.vrsalex.uikit.component.v1.card.AppTimer
+import com.vrsalex.uikit.component.v1.controller.AppCheckBox
+import com.vrsalex.uikit.component.v1.controller.AppPagination
+import com.vrsalex.uikit.component.v1.input.AppTextInput
+import com.vrsalex.uikit.component.v1.tabbar.AppTabBar
+import com.vrsalex.uikit.theme.GaameTiimeTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            GaametiimeUikitTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+            GaameTiimeTheme {
+                Column(
+                    Modifier.safeDrawingPadding().padding(horizontal = 20.dp)
+                        .verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    AppButton(
+                        text = "Let’s Combat!",
+                        onClick = {}
                     )
+                    AppTertiaryButton(
+                        text = "Logout",
+                        iconId = R.drawable.logout,
+                        { }
+                    )
+
+                    var text by remember { mutableStateOf("") }
+                    AppTextInput(
+                        value = text,
+                        onValueChange = { text = it },
+                        placeHolder = "Full Name"
+                    )
+
+                    AppPagination(
+                        state = rememberPagerState(2) { 3 }
+                    )
+
+                    AppTimer(
+                        "00:00"
+                    )
+
+                    AppCheckBox(
+                        active = true,
+                        onClick = {}
+                    )
+                    AppCheckBox(
+                        active = false,
+                        onClick = {}
+                    )
+
+                    AppCard(
+                        title = "Schedule",
+                        description = "Easily schedule event/games then find like minded players for battle. You up for it?",
+                        imageId = R.drawable.image1,
+                        onClick = { }
+                    )
+
+                    DatePicker()
+
+                    AppTimePicker()
+
+                    AppTabBar<String>()
                 }
             }
         }
@@ -52,18 +117,3 @@ class MainActivity : ComponentActivity() {
 
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GaametiimeUikitTheme {
-        Greeting("Android")
-    }
-}
