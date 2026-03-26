@@ -39,9 +39,10 @@ fun <T> AppTabBar(
     leftItems: List<AppTabItem<T>>,
     rightItems: List<AppTabItem<T>>,
     centerItem: AppTabItem<T>,
-    onItemClick: () -> Unit,
+    onItemClick: (T) -> Unit,
     modifier: Modifier = Modifier
 ) {
+
 
     Box(
         modifier = modifier
@@ -78,18 +79,20 @@ fun <T> AppTabBar(
 }
 
 @Composable
-fun <T> CentralIconElement(item: AppTabItem<T>, onClick: () -> Unit) {
+fun <T> CentralIconElement(item: AppTabItem<T>, onClick: (T) -> Unit) {
     Box(
-        modifier = Modifier.size(56.dp)
+        modifier = Modifier
+            .size(56.dp)
             .clip(CircleShape)
             .border(
                 width = 5.dp,
                 color = Color.White,
                 shape = CircleShape
-            ).clickable(
+            )
+            .clickable(
                 interactionSource = null,
                 indication = null,
-                onClick = onClick
+                onClick = { onClick(item.payload) }
             ),
         contentAlignment = Alignment.Center
     ){
@@ -105,13 +108,13 @@ fun <T> CentralIconElement(item: AppTabItem<T>, onClick: () -> Unit) {
 
 
 @Composable
-private fun <T> TabIconElement(item: AppTabItem<T>, modifier: Modifier, onClick: () -> Unit) {
+private fun <T> TabIconElement(item: AppTabItem<T>, modifier: Modifier, onClick: (T) -> Unit) {
     Column(
         modifier = modifier
             .clickable(
                 interactionSource = null,
                 indication = null,
-                onClick = onClick
+                onClick = { onClick(item.payload) }
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
