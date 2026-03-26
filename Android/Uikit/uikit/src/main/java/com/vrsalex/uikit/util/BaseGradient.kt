@@ -5,7 +5,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import com.vrsalex.uikit.theme.AppTheme
-import com.vrsalex.uikit.theme.AppType
 
 /**
  * Назначение:
@@ -22,7 +21,7 @@ fun getBaseGradient() = Brush.linearGradient(
 
 
 @Composable
-fun getBaseGradient2() = Brush.linearGradient(
+fun getBaseGradient2(color: Color) = Brush.linearGradient(
     0.049f to Color(0x4DFFFFFF),
     0.9545f to Color(0x4DE9F0F7),
     start = Offset.Infinite,
