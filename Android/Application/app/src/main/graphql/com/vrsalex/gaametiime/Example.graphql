@@ -1,0 +1,35 @@
+#query GetUserTasks($first: Int!, $after: String) {
+#    # Входим через Query
+#    viewer {
+#        login
+#        # Аргументы для пагинации
+#        tasks(first: $first, after: $after) {
+#            nodes {
+#                id
+#                title
+#                priority
+#            }
+#            pageInfo {
+#                endCursor
+#                hasNextPage
+#            }
+#        }
+#    }
+#}
+#
+#mutation CreateNewTask($input: CreateTaskInput!) {
+#    # Название мутации из схемы
+#    createTask(input: $input) {
+#        # Что мы хотим получить в ответ после создания
+#        task {
+#            id
+#            title
+#            createdAt
+#        }
+#        # Список ошибок, если сервер их возвращает внутри объекта
+#        errors {
+#            message
+#            field
+#        }
+#    }
+#}

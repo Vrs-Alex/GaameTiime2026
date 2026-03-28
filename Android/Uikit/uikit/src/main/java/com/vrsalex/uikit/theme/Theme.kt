@@ -23,7 +23,7 @@ import androidx.core.view.WindowCompat
 data class AppColor(
     val gradient1: Color,
     val gradient2: Color,
-    val redText: Color
+    val redElemment: Color
 )
 
 
@@ -37,7 +37,7 @@ val LocalAppColors = staticCompositionLocalOf {
     AppColor(
         gradient1 = Color.Unspecified,
         gradient2 = Color.Unspecified,
-        redText = Color.Unspecified
+        redElemment = Color.Unspecified
     )
 }
 
@@ -68,7 +68,7 @@ fun GaameTiimeTheme(
     val colors = AppColor(
         gradient1 = Gradient1,
         gradient2 = Gradient2,
-        redText = RedText
+        redElemment = RedText
     )
 
     val types = AppType(

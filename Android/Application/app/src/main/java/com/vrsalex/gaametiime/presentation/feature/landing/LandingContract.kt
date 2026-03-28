@@ -9,7 +9,19 @@ object LandingContract {
 
     data class State(
         val name: String,
-        val image: String
+        val items: List<CardItem>
+    )
+
+
+    sealed interface Effect {
+        data class NavigateTo(val payload: Any): Effect
+    }
+
+    data class CardItem(
+        val title: String,
+        val description: String,
+        val imageId: Int,
+        val navTo: Any
     )
 
 }

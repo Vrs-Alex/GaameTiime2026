@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
@@ -29,8 +31,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.vrsalex.uikit.component.v1.button.AppButton
-import com.vrsalex.uikit.component.v1.controller.AppPagination
+import com.vrsalex.uikit.component.v1.AppButton
+import com.vrsalex.uikit.component.v1.AppPagination
 import com.vrsalex.uikit.theme.AppTheme
 
 /**
@@ -38,6 +40,7 @@ import com.vrsalex.uikit.theme.AppTheme
  * Дата: 25.03.2026
  * Автор: Вартанян Алексей
  */
+
 @Composable
 fun OnboardingScreen(
     viewmodel: OnBoardingViewmodel = hiltViewModel(),
@@ -46,7 +49,7 @@ fun OnboardingScreen(
 
     val pagerState = rememberPagerState(0) { viewmodel.pages.size }
     Column(
-        Modifier.fillMaxSize().safeContentPadding(),
+        Modifier.fillMaxSize().safeDrawingPadding().padding(bottom = 45.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         HorizontalPager(
@@ -57,7 +60,7 @@ fun OnboardingScreen(
                 onAction()
             }
         }
-        AppPagination(pagerState)
+        AppPagination(pagerState, modifier = Modifier)
     }
 
 }
@@ -68,8 +71,7 @@ private fun OnboardingContent(state: OnboardingContract.State, onAction: () -> U
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(vertical = 20.dp),
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround
     ) {
@@ -81,13 +83,12 @@ private fun OnboardingContent(state: OnboardingContract.State, onAction: () -> U
             contentScale = ContentScale.FillWidth
         )
 
-
         Column(Modifier.padding(horizontal = 75.dp)) {
             Text(
                 text = state.title,
                 style = AppTheme.types.text,
                 fontWeight = FontWeight.Bold,
-                color = AppTheme.colors.redText,
+                color = AppTheme.colors.redElemment,
                 fontSize = 24.sp,
                 textAlign = TextAlign.Center
             )
@@ -105,13 +106,13 @@ private fun OnboardingContent(state: OnboardingContract.State, onAction: () -> U
 
 
         if (state.mainButtonText != null) {
-            AppButton(state.mainButtonText, { onAction() })
+            AppButton(state.mainButtonText, { onAction() }, modifier = Modifier.width(224.dp))
         } else {
             Text(
                 text = "Skip",
                 style = AppTheme.types.text,
                 modifier = Modifier.clickable { onAction() },
-                color = AppTheme.colors.redText,
+                color = AppTheme.colors.redElemment,
                 fontWeight = FontWeight.Bold,
                 textDecoration = TextDecoration.Underline
             )

@@ -1,0 +1,23 @@
+query GetGithubStats($login: String!) {
+    user(login: $login) {
+
+        repositories(first: 100) {
+            totalCount
+            nodes {
+                isPrivate
+            }
+        }
+
+        # Данные для столбцов и линии (коммиты за последние дни)
+        contributionsCollection {
+            contributionCalendar {
+                weeks {
+                    contributionDays {
+                        contributionCount
+                        weekday
+                    }
+                }
+            }
+        }
+    }
+}
