@@ -42,6 +42,8 @@ android {
     buildFeatures {
         compose = true
     }
+
+
 }
 
 apollo {
@@ -102,6 +104,17 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+
+    testImplementation(libs.junit)
+    // Ассерты и Моки
+    testImplementation(libs.truth)
+    testImplementation(libs.mockk)
+    // Корутины и Flow
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.turbine)
+    // Сетевые моки
+    testImplementation(libs.ktor.client.mock)
+    testImplementation(libs.apollo.testing.support)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

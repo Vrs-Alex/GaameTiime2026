@@ -3,7 +3,6 @@ agp = "9.0.0"
 kotlin = "2.3.20"
 composeBom = "2026.03.00"
 coreKtx = "1.18.0"
-junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.10.0"
@@ -33,8 +32,23 @@ navigationCompose = "2.9.7"
 coreSplashscreen = "1.2.0"
 vico = "3.0.3"
 
+# Tests
+junit = "4.13.2"
+truth = "1.4.2"
+mockk = "1.13.10"
+turbine = "1.1.0"
+coroutines-test = "1.8.0"
 
 [libraries]
+
+# Tests
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
+ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
+apollo-testing-support = { group = "com.apollographql.apollo", name = "apollo-testing-support", version.ref = "apollo" }
 
 # Netowrk
 apollo-runtime = { group = "com.apollographql.apollo", name = "apollo-runtime", version.ref = "apollo" }
@@ -73,7 +87,6 @@ androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", versi
 
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
